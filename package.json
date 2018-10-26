@@ -1,6 +1,6 @@
 {
   "name": "open-html-2-pdf",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a simple server to convert html to pdf",
   "main": "src/index.ts",
   "scripts": {
