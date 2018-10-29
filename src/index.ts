@@ -14,7 +14,7 @@ const bodyParserOptions = { limit: '1000mb' };
 
 app.use(cors());
 app.use(bodyParser.json(bodyParserOptions));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded(Object.assign({ extended: false }, bodyParserOptions)));
 
 app.use(function (req, res, next) {
     const url = req.method + ' - ' + req.protocol + '://' + req.get('host') + req.originalUrl;
