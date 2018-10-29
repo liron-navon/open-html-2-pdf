@@ -9,7 +9,7 @@ const app = express();
 process.on('uncaughtException', function(err) {
     console.error( 'UNCAUGHT EXCEPTION', err.stack, err.message );
 });
-xw
+
 app.use(cors());
 app.use(bodyParser({limit: '1000mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
