@@ -12,19 +12,12 @@ process.on('uncaughtException', function(err) {
 
 
 
-// const bodyParserOptions = { parameterLimit: 100000, type: 'application/json', limit: 1024 * 1024 * 100 };
+const bodyParserOptions = { parameterLimit: 100000, type: 'application/json', limit: 1024 * 1024 * 100 };
 
-app.use(bodyParser.urlencoded({
-    limit: '5mb',
-    extended: false
-}));
-app.use(bodyParser.json({limit: '5mb'}));
 app.use(cors());
-// app.use(bodyParser({limit: '50mb'}));
-// app.use(bodyParser.urlencoded({limit: '50mb'}));
-// app.use(bodyParser());
-// app.use(bodyParser.json(bodyParserOptions));
-// app.use(bodyParser.urlencoded(Object.assign({ extended: false }, bodyParserOptions)));
+
+app.use(bodyParser.json(bodyParserOptions));
+app.use(bodyParser.urlencoded(Object.assign({ extended: false }, bodyParserOptions)));
 
 app.use(function (req, res, next) {
     const url = req.method + ' - ' + req.protocol + '://' + req.get('host') + req.originalUrl;

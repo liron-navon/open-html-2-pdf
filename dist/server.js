@@ -105,9 +105,10 @@ const app = express();
 process.on('uncaughtException', function (err) {
     console.error('UNCAUGHT EXCEPTION', err.stack, err.message);
 });
+const bodyParserOptions = { parameterLimit: 100000, type: 'application/json', limit: 1024 * 1024 * 100 };
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json(bodyParserOptions));
+app.use(bodyParser.urlencoded(Object.assign({ extended: false }, bodyParserOptions)));
 app.use(function (req, res, next) {
     const url = req.method + ' - ' + req.protocol + '://' + req.get('host') + req.originalUrl;
     console.log(url);
@@ -208,7 +209,7 @@ exports.default = convert;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 function ping(req, res) {
-    res.send('pong');
+    res.send('pong:1');
 }
 exports.default = ping;
 
