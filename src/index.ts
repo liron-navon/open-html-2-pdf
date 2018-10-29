@@ -10,9 +10,7 @@ process.on('uncaughtException', function(err) {
     console.error( 'UNCAUGHT EXCEPTION', err.stack, err.message );
 });
 
-
-
-const bodyParserOptions = { parameterLimit: 100000, type: 'application/json', limit: 1024 * 1024 * 100 };
+const bodyParserOptions = { parameterLimit: 100000, type: 'application/json', limit: 1024 * 1024 * 300 };
 
 app.use(cors());
 
