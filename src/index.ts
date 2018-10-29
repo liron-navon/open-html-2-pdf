@@ -10,11 +10,16 @@ process.on('uncaughtException', function(err) {
     console.error( 'UNCAUGHT EXCEPTION', err.stack, err.message );
 });
 
-const bodyParserOptions = { parameterLimit: 100000, type: 'application/json', limit: 1024 * 1024 * 100 };
+
+
+// const bodyParserOptions = { parameterLimit: 100000, type: 'application/json', limit: 1024 * 1024 * 100 };
 
 app.use(cors());
-app.use(bodyParser.json(bodyParserOptions));
-app.use(bodyParser.urlencoded(Object.assign({ extended: false }, bodyParserOptions)));
+app.use(bodyParser({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb'}));
+app.use(bodyParser());
+// app.use(bodyParser.json(bodyParserOptions));
+// app.use(bodyParser.urlencoded(Object.assign({ extended: false }, bodyParserOptions)));
 
 app.use(function (req, res, next) {
     const url = req.method + ' - ' + req.protocol + '://' + req.get('host') + req.originalUrl;
