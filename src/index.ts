@@ -13,7 +13,6 @@ process.on('uncaughtException', function(err) {
 const bodyParserOptions = { limit: '1000mb' };
 
 app.use(cors());
-app.use(bodyParser(bodyParserOptions));
 app.use(bodyParser.json(bodyParserOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 
