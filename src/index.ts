@@ -10,10 +10,12 @@ process.on('uncaughtException', function(err) {
     console.error( 'UNCAUGHT EXCEPTION', err.stack, err.message );
 });
 
+const bodyParserOptions = { limit: '1000mb' };
+
 app.use(cors());
-app.use(bodyParser({limit: '1000mb'}));
+app.use(bodyParser(bodyParserOptions));
+app.use(bodyParser.json(bodyParserOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 app.use(function (req, res, next) {
     const url = req.method + ' - ' + req.protocol + '://' + req.get('host') + req.originalUrl;
